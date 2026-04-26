@@ -1,16 +1,27 @@
 # Chinese AI Chess
 
-中国象棋人工智能项目，支持 PaddlePaddle 和 PyTorch 双框架训练。
+中国象棋 AI 对弈游戏，通过 DeepSeek API 接入大模型进行智能对弈。
 
 ## 项目结构
 
 ```
 ChineseAIChess/
-├── chinese_chess_game.py       # 象棋游戏引擎与可视化
-├── chinese_chess_paddle.py     # PaddlePaddle 训练
-├── chinese_chess_paddle_gpu.py  # PaddlePaddle GPU 训练
-├── chinese_chess_rl.py          # PyTorch 强化学习
-└── chess_model_gpu.pdparams     # 预训练模型权重
+├── config/
+│   └── settings.py          # 配置文件
+├── core/
+│   ├── board.py             # 棋盘数据结构
+│   └── move_validator.py    # 走棋规则验证
+├── api/
+│   ├── deepseek_client.py   # DeepSeek API 客户端
+│   ├── prompt_builder.py     # Prompt 构建器
+│   └── response_parser.py    # 响应解析
+├── ui/
+│   └── pygame_ui.py         # Pygame UI
+├── game/
+│   └── game_manager.py      # 游戏管理器
+├── main.py                   # 程序入口
+├── .env.example              # 环境变量模板
+└── requirements.txt
 ```
 
 ## 安装
@@ -19,30 +30,30 @@ ChineseAIChess/
 pip install -r requirements.txt
 ```
 
+## 配置
+
+1. 复制 `.env.example` 为 `.env`
+2. 在 `.env` 中设置你的 DeepSeek API Key：
+
+```
+DEEPSEEK_API_KEY=your_api_key_here
+```
+
 ## 运行
 
-### 游戏界面
 ```bash
-python chinese_chess_game.py
+python main.py
 ```
 
-### PaddlePaddle 训练
-```bash
-# CPU 训练
-python chinese_chess_paddle.py
+## 游戏说明
 
-# GPU 训练
-python chinese_chess_paddle_gpu.py
-```
-
-### PyTorch 强化学习
-```bash
-python chinese_chess_rl.py
-```
+- 人类玩家执红方先走
+- DeepSeek AI 执黑方
+- 点击棋子选中，然后点击目标位置走棋
+- 将死对方将/帅即获胜
 
 ## 依赖
 
-- PaddlePaddle >= 3.0.0
-- PyTorch >= 2.0.0
-- PyGame >= 2.0.0
-- NumPy >= 1.20.0
+- openai >= 1.0.0
+- pygame >= 2.0.0
+- python-dotenv >= 1.0.0

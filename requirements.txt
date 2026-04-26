@@ -1,11 +1,11 @@
-# PaddlePaddle (CPU version)
-paddlepaddle>=3.0.0
-
-# PyTorch
-torch>=2.0.0
+# DeepSeek API (OpenAI compatible)
+openai>=1.0.0
 
 # UI
 pygame>=2.0.0
 
 # Common
 numpy>=1.20.0
+
+# Environment variable management
+python-dotenv>=1.0.0
